@@ -1,0 +1,177 @@
+{
+  "id": "mission_1",
+  "title": "Lead to the Table",
+  "objective": "Accompany guests to their table correctly, creating a positive initial experience that sets the tone for their visit.",
+  "difficulty": "Beginner",
+  "duration_minutes": 5,
+  "required_skills": ["Customer Service", "Observation", "Communication"],
+  "scenes": [
+    {
+      "id": "scene_1",
+      "text": "🕒 20:15 – Two well-dressed guests enter. They appear to be on a date. They look at you, expecting initiative.",
+      "background": "restaurant_entrance",
+      "characters": [
+        { "id": "guest_1", "description": "Man, late 20s, stylish casual wear" },
+        { "id": "guest_2", "description": "Woman, mid 20s, elegant dress" }
+      ],
+      "options": [
+        {
+          "text": "Table for two? Right this way.",
+          "next_scene": "scene_2_a",
+          "tone": "polite",
+          "skill": "communication"
+        },
+        {
+          "text": "Do you have a reservation or are you walking in?",
+          "next_scene": "scene_2_b",
+          "tone": "professional",
+          "skill": "observation"
+        },
+        {
+          "text": "Feel free to choose any available table.",
+          "next_scene": "scene_2_c",
+          "tone": "casual",
+          "skill": "customer service"
+        }
+      ],
+      "hint": "First impressions matter. Assess the situation before choosing your approach."
+    },
+    {
+      "id": "scene_2_a",
+      "text": "They respond: 'Yes, thank you.' They follow you with positive energy. Several tables are available.",
+      "background": "restaurant_dining_area",
+      "options": [
+        {
+          "text": "Near the restroom (most convenient for staff).",
+          "next_scene": "result_1",
+          "points": 60,
+          "tone": "practical",
+          "skill": "efficiency"
+        },
+        {
+          "text": "Outdoor terrace with candle lighting (romantic view).",
+          "next_scene": "scene_3_b",
+          "points": 120,
+          "tone": "thoughtful",
+          "skill": "observation"
+        },
+        {
+          "text": "Indoor, well-lit area.",
+          "next_scene": "result_3",
+          "points": 90,
+          "tone": "neutral",
+          "skill": "customer service"
+        }
+      ],
+      "hint": "Consider the guests' apparent preferences when selecting a table."
+    },
+    {
+      "id": "scene_3_b",
+      "text": "One guest smiles and asks: 'Could you bring us the menu?'",
+      "background": "restaurant_terrace",
+      "options": [
+        {
+          "text": "Of course, I'll be right back.",
+          "next_scene": "result_1",
+          "points": 60,
+          "tone": "efficient",
+          "skill": "service"
+        },
+        {
+          "text": "I'll bring it right away and might suggest something special.",
+          "next_scene": "result_2",
+          "points": 240,
+          "tone": "engaging",
+          "skill": "upselling"
+        },
+        {
+          "text": "Yes, it's already on the table.",
+          "next_scene": "result_3",
+          "points": 30,
+          "tone": "abrupt",
+          "skill": "attention"
+        }
+      ],
+      "hint": "This is an opportunity to upsell and enhance their experience."
+    }
+  ],
+  "results": [
+    {
+      "id": "result_1",
+      "text": "🔴 Functional but impersonal - uncomfortable table choice",
+      "points": 60,
+      "feedback": "You completed the task but missed opportunities to create a memorable experience.",
+      "guest_satisfaction": 60,
+      "professional_impact": "Basic service met expectations but didn't exceed them."
+    },
+    {
+      "id": "result_2",
+      "text": "🟢 Excellent! You demonstrated control, chose an attractive table, and opened doors for upselling.",
+      "points": 240,
+      "feedback": "You created a strong first impression that will likely lead to higher guest satisfaction and spending.",
+      "guest_satisfaction": 95,
+      "professional_impact": "Demonstrated potential for upselling and creating memorable experiences."
+    },
+    {
+      "id": "result_3",
+      "text": "🟡 Average - Basic expectations met but nothing special",
+      "points": 90,
+      "feedback": "The service was adequate but lacked the personal touch that creates loyal customers.",
+      "guest_satisfaction": 75,
+      "professional_impact": "Met minimum standards without standing out."
+    }
+  ],
+  "achievements": [
+    {
+      "condition": "scene_2_a.options[1].selected",
+      "title": "🏅 Romantic Potential",
+      "description": "Recognized and enhanced a romantic dining occasion"
+    },
+    {
+      "condition": "scene_3_b.options[1].selected",
+      "title": "🧠 Top Anticipation",
+      "description": "Anticipated guest needs and created upsell opportunities"
+    },
+    {
+      "condition": "total_points >= 200",
+      "title": "⭐ Service Star",
+      "description": "Delivered exceptional service throughout the scenario"
+    }
+  ],
+  "scoring": {
+    "point_system": {
+      "basic_task_completion": 60,
+      "good_decision": 120,
+      "excellent_decision": 240,
+      "missed_opportunity": -30
+    },
+    "rating_scale": {
+      "1_star": "0-80 points",
+      "2_stars": "81-160 points",
+      "3_stars": "161-240 points",
+      "4_stars": "241-320 points",
+      "5_stars": "321+ points"
+    }
+  },
+  "debriefing": {
+    "key_learnings": [
+      "First impressions significantly impact the dining experience",
+      "Table selection should consider guest preferences",
+      "Initial interactions create upselling opportunities"
+    ],
+    "reflection_questions": [
+      "How could you have better assessed the guests' needs?",
+      "What other tables might have been appropriate?",
+      "How might different approaches affect tips and return visits?"
+    ]
+  },
+  "replayability": {
+    "alternative_paths": 3,
+    "hidden_scenes": 1,
+    "random_events": [
+      "Unexpected large party arrives",
+      "Preferred table is unavailable",
+      "Guest has special request"
+    ]
+  }
+}
