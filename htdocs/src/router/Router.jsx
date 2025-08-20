@@ -38,13 +38,9 @@ const Router = () => {
           </PrivateRoute>
         }
       >
-      <Route index element={<Navigate to="/home" replace />} />
-      <Route path="home" element={<Home />} />
-      <Route path="lesson" element={<Lesson />} />
-      
-      {/* <Route path="dashboard" element={<Dashboard />} />
-      <Route path="workOrders" element={<WorkOrder />} />
-      <Route path="settings" element={<Settings />} /> */}
+        <Route index element={<Navigate to="/home" replace />} />
+        <Route path="home" element={<Home />} />
+        <Route path="lesson" element={<Lesson />} />
       </Route>
       <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
     </Routes>

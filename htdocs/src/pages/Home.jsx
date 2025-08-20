@@ -5,6 +5,12 @@ const Home = () => {
   return (
     <div className='m-10'>
       <Mission leccionJSON={misionLlevarMesa} />
+      <Mission leccionJSON={misionLlevarMesa} />
+      <Mission leccionJSON={misionLlevarMesa} />
+      <Mission leccionJSON={misionLlevarMesa} />
+      <Mission leccionJSON={misionLlevarMesa} />
+      <Mission leccionJSON={misionLlevarMesa} />
+
     </div>
   )
 }
