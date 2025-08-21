@@ -11,12 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Auth::verifyToken();
-$conn = DB::Connection($databases['db_1']);
+$conn = null; //DB::Connection($databases['db_1']);
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $input = json_decode(file_get_contents('php://input'), true);
-        if (empty($input['user']) || empty($input['pass'])) {
+
+        ApiResponse::error($input, 400);
+        if (empty($input['formData']) || $input['formData']['mode']) {
             ApiResponse::error('Datos incompletos', 400);
         }
 
@@ -37,15 +39,10 @@ try {
 
         ApiResponse::success([
             'name' => $data['user']['name'],
-            'permissions' => Perms::getPermissions($data['user']['role'])
         ]);
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $decoded = Auth::verifyToken();
-
-        ApiResponse::success([
-            'permissions' => Perms::getPermissions($decoded['role'])
-        ]);
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         $token = $_COOKIE['token'] ?? null;

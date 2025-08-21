@@ -4,9 +4,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../pages/layout/MainLayout';
 import PhoneLayout from '../pages/layout/PhoneLayout';
 import Home from '../pages/Home';
-import Login from '../pages/Login';
 import Lesson from '../components/Lesson';
-
+import Auth from '../pages/Auth';
 
 const PrivateRoute = ( {children} ) => {
   // const { isLoading, userData } = useAuth();
@@ -30,7 +29,7 @@ const Router = () => {
   const isMobile = false;
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="auth" element={<Auth />} />
       <Route path="/"
         element={
           <PrivateRoute>

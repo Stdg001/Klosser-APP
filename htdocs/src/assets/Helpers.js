@@ -29,7 +29,7 @@ export async function APIconnection(endpoint = '', data = null, method = 'GET', 
 
   } catch (error) {
     if (debug) console.error('API Error:', error);
-    throw error; // Esto es clave para propagar el error
+    throw error;
   }
 }
 
@@ -39,7 +39,7 @@ export function currentDate() {
   
   // Extraer año, mes y día
   const año = hoy.getFullYear();
-  const mes = hoy.getMonth() + 1; // Los meses van de 0-11, por eso sumamos 1
+  const mes = hoy.getMonth() + 1; 
   const dia = hoy.getDate();
   
   // Formatear con ceros a la izquierda si es necesario
@@ -66,7 +66,6 @@ export const deepParseJson = (obj) => {
 
   return obj;
 };
-
 
 export const formatDate = (dateString) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };

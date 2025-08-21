@@ -6,10 +6,7 @@
   /* Variables base que no cambian con el tema */
   --btn-hover-bg-light: rgba(0, 0, 0, 0.05);
   --btn-hover-bg-dark: rgba(255, 255, 255, 0.1);
-  --error-text: #ffffff;
-}
-
-[data-theme="light"] {
+  
   --color-primary: #4361EE;
   --color-secondary: #FF7F11;
   --color-background: #F8F9FA;
@@ -26,10 +23,10 @@
   --border-color: #e2e8f0;
   --boreder-separator-color: #e2e8f0;
   --menu-hover-bg: rgba(0, 0, 0, 0.05);
-  --btn-hover-bg: var(--btn-hover-bg-light);
+  --btn-hover-bg: var(--btn-hover-bg-light);  
 }
 
-[data-theme="dark"] {
+body[data-theme="dark"] {
   --color-primary: #5F75EE;
   --color-secondary: #FF8C2A;
   --color-background: #121212;
@@ -62,7 +59,7 @@
   .theme-active-text { color: var(--color-primary); }
   .theme-shadow { box-shadow: var(--shadow); }
   .theme-input { background: transparent; color: inherit; }
-  .theme-error { background-color: var(--color-error); color: var(--error-text); }
+  .theme-error { color: var(--color-error); }
   
   /* Estados de hover */
   .theme-menu-hover:hover { background-color: var(--menu-hover-bg); }
@@ -108,4 +105,45 @@
     scrollbar-color: rgba(128, 128, 128, 0.5) transparent;
     overflow: overlay;
   }
+}
+
+/* Para Chrome, Safari, Edge y otros navegadores basados en WebKit/Blink */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-background) inset !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Para navegadores basados en WebKit con implementación diferente (como Opera) */
+input:-internal-autofill-selected {
+    background-color: #f0f8ff !important;
+    color: #333 !important;
+}
+
+/* Para Firefox */
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus {
+    background-color: #f0f8ff !important;
+    color: #333 !important;
+    box-shadow: 0 0 0 1000px #f0f8ff inset !important;
+}
+
+/* Estilos generales para inputs */
+.input-autocomplete {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    background-color: white;
+    transition: border-color 0.3s;
+}
+
+.input-autocomplete:focus {
+    border-color: #4a90e2;
+    outline: none;
 }
