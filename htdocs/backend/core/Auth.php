@@ -9,32 +9,9 @@ use Exception;
 class Auth {
     private static $revokedTokens = [];
     
-    public static function getUserData($conn, $username): array {
-        $query = DB::Query($conn, 'SELECT * FROM workers WHERE DNI = ?', [$username], 's');
-        if (empty($query['data'])) throw new Exception("Usuario no encontrado");
-        return $query['data'][0];
-    }
-
-    public static function login($conn, $password, $username): array {
-        RateLimiter::check($_SERVER['REMOTE_ADDR']);
-
-        $user = self::getUserData($conn, $username);
-        if (!password_verify($password, $user['password'])) {
-            RateLimiter::recordAttempt($_SERVER['REMOTE_ADDR']);
-            throw new Exception("Credenciales inválidas");
-        }
-
-        $token = self::generateToken($user['id'], $user['role']);
-        return [
-            'user' => array_diff_key($user, ['password' => '']),
-            'token' => $token
-        ];
-    }
-
-    private static function generateToken($userId, $role): string {
+    public static function generateToken($userId): string {
         $payload = [
             "sub" => $userId,
-            "role" => $role,
             "iat" => time(),
             "exp" => time() + 900, // 15 minutos
             "jti" => bin2hex(random_bytes(16))
@@ -64,6 +41,16 @@ class Auth {
 
     public static function clearAuthCookie(): void {
         setcookie('token', '', time() - 3600, '/', '', true, true);
+    }
+
+    public static function generateCookie($data): void {
+        setcookie('token', $data, [
+            'expires' => time() + 900,
+            'path' => '/',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
     }
 }
 ?>
