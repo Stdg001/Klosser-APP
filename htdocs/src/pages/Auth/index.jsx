@@ -6,6 +6,7 @@ import { FaApple, FaGoogle } from "react-icons/fa";
 
 import Login from "./Login";
 import Register from "./Register";
+import { APIconnection } from "../../assets/Helpers";
 
 export default function Auth() {
   const [ isLogin, setIsLogin ] = useState(true)
@@ -15,6 +16,7 @@ export default function Auth() {
   const ThemeIcon = theme === 'light' ? FiMoon : FiSun;
 
   const [formData, setFormData] = useState({
+    mode: "",
     email: "",
     password: "",
     name: "",
@@ -28,7 +30,11 @@ export default function Auth() {
     const v = validate(formData, isLogin);
     setErrors(v);
     if (Object.keys(v).length === 0) {
-      console.log("Datos del formulario:", { mode: isLogin ? "login" : "register", ...formData });
+      try { 
+        APIconnection('auth', {formData: formData}, 'POST')
+      } catch (Error) {
+        // to do: show msg error and modify formData to set mode
+      }
     }
   };
 
@@ -125,7 +131,7 @@ export function PrimaryButton({ children, icon, background, shadowColor, ...prop
   return (
     <motion.button
       {...props}
-      className="w-full py-3.5 rounded-xl font-bold transition-all flex items-center justify-center gap-2 "
+      className="w-full py-3.5 rounded-xl font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
       style={{
         background: `var(${background})`,
         boxShadow: `0 6px 14px ${shadowColor}`,
@@ -165,7 +171,7 @@ export function SocialRow() {
 export function SocialButton({ icon, label }) {
   return (
     <motion.button
-      className="p-2.5 rounded-xl theme-border theme-text font-medium flex items-center justify-center gap-2 transition-all hover:opacity-90"
+      className="p-2.5 rounded-xl theme-border theme-text font-medium flex items-center justify-center gap-2 transition-all hover:opacity-90 cursor-pointer"
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
       type="button"

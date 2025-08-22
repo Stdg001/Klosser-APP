@@ -18,7 +18,7 @@ export async function APIconnection(endpoint = '', data = null, method = 'GET', 
     }
 
     const json = await response.json().catch(() => {
-      throw new Error('La respuesta no es JSON válido');
+      throw new Error('Error en el servidor');
     });
 
     if (!response.ok || !json.success) {
