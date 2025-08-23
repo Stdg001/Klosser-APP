@@ -39,6 +39,9 @@ const Router = () => {
       >
         <Route index element={<Navigate to="/home" replace />} />
         <Route path="home" element={<Home />} />
+        <Route path="leaderboard" element={''} />
+        <Route path="rewards" element={''} />
+
         <Route path="lesson" element={<Lesson />} />
       </Route>
       <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
