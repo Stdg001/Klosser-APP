@@ -12,8 +12,7 @@ const Home = () => {
   return (
     <div className='p-10 theme-bg h-screen'>
       {/* <Mission leccionJSON={misionLlevarMesa} /> */}
-      <MissionBtn 
-      missionJSON={misionLlevarMesa}/>
+      <MissionBtn missionJSON={misionLlevarMesa}/>
       
       
       
