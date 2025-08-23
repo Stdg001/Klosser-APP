@@ -9,7 +9,7 @@ function LevelButton({ missionJSON, isActive }) {
     <div>
       <button
         onClick={() => setClick(true)}
-        className="bg-amber-600 hover:bg-amber-100 p-4 border-2 rounded-full w-20 h-20 font-bold text-3xl cursor-pointer">
+        className="bg-amber-600 hover:bg-amber-100 p-4 border-2 rounded-full w-20 h-20 font-bold text-3xl cursor-pointer active:bg-amber-400">
         {missionJSON.id}
       </button>
 
