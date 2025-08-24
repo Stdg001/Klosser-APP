@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 import MainLayout from '../pages/layout/MainLayout';
 import PhoneLayout from '../pages/layout/PhoneLayout';
@@ -8,19 +8,15 @@ import Lesson from '../components/Lesson';
 import Auth from '../pages/Auth';
 
 const PrivateRoute = ( {children} ) => {
-  // const { isLoading, userData } = useAuth();
+  const { userData, isLoading } = useAuth();
 
-  // if (isLoading) {
-  //   return <div> Cargando... </div>;
-  // }
+  if (isLoading) {
+    return <div> Cargando... </div>;
+  }
 
-  // if (!userData) {
-  //   <Navigate to='/unauthorized' replace />
-  // }
-
-  // if (!roles?.includes(userData?.role)) {
-  //   return <Navigate to="/unauthorized" replace />;
-  // }
+  if (!userData) {
+    <Navigate to='/login' replace />
+  }
 
   return children;
 }
