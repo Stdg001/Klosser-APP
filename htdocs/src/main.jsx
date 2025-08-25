@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
+import { AuthProvider } from './context/AuthContext'
 
 import './index.css'
 import Router from './router/Router'
@@ -9,11 +10,11 @@ import Router from './router/Router'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      {/* <AuthProvider> */}
+      <AuthProvider>
         <ThemeProvider>
           <Router />
         </ThemeProvider>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )

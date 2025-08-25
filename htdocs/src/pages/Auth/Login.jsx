@@ -5,7 +5,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import { InputField, PrimaryButton, Divider, SocialRow} from './index';
 
-export default function Login({ handleInputChange, formData, handleSubmit, errors, setisLogin }) {  
+export default function Login({ handleInputChange, formData, handleSubmit, errors, setisLogin, status }) {  
   const [showPassword, setShowPassword] = useState(false);
   
   return (
@@ -29,7 +29,7 @@ export default function Login({ handleInputChange, formData, handleSubmit, error
               Bienvenido de nuevo
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+            <form onSubmit={(e) => handleSubmit(e, 'login')} className="space-y-4" noValidate>
               <InputField
                 label="Correo electrónico"
                 name="email"
@@ -66,7 +66,7 @@ export default function Login({ handleInputChange, formData, handleSubmit, error
                 </label>
                 <a href="#" className="theme-active-text hover:underline">¿Olvidaste tu contraseña?</a>
               </div>
-
+              <span className="theme-error">{status}</span>
               <PrimaryButton
                 type="submit"
                 background="--color-primary"

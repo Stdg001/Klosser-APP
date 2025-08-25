@@ -1,3 +1,5 @@
+import { APIconnection } from "../../assets/Helpers";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
@@ -6,11 +8,13 @@ import { FaApple, FaGoogle } from "react-icons/fa";
 
 import Login from "./Login";
 import Register from "./Register";
-import { APIconnection } from "../../assets/Helpers";
 
 export default function Auth() {
+  const navigate = useNavigate()
+
   const [ isLogin, setIsLogin ] = useState(true)
   const [ errors, setErrors ] = useState({});
+  const [ status, setStatus ] = useState(null);
 
   const { theme, toggleTheme } = useTheme();
   const ThemeIcon = theme === 'light' ? FiMoon : FiSun;
@@ -25,15 +29,24 @@ export default function Auth() {
     terms: false,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e, formMode) => {
     e.preventDefault();
-    const v = validate(formData, isLogin);
+
+    // crea un objeto con los datos actuales + el mode
+    const dataToSend = { ...formData, mode: formMode };
+
+    // valida sobre dataToSend
+    const v = validate(dataToSend, isLogin);
     setErrors(v);
+
     if (Object.keys(v).length === 0) {
-      try { 
-        APIconnection('auth', {formData: formData}, 'POST')
-      } catch (Error) {
-        // to do: show msg error and modify formData to set mode
+      try {
+        const response = await APIconnection("auth", { formData: dataToSend }, "POST", true);
+        setStatus(null);
+        navigate('/home')
+
+      } catch (error) {
+        setStatus(error.message);
       }
     }
   };
@@ -52,6 +65,7 @@ export default function Auth() {
           handleSubmit={handleSubmit}
           errors={errors}
           setisLogin={setIsLogin}
+          status={status}
         /> 
       : 
         <Register 
@@ -60,6 +74,7 @@ export default function Auth() {
           handleInputChange={handleInputChange} 
           errors={errors}
           setisLogin={setIsLogin}
+          status={status}
         />
       }
 

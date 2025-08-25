@@ -3,9 +3,9 @@ import { useMemo, useState } from "react";
 
 import { InputField, PrimaryButton, Divider, SocialRow} from './index';
 import { FaEnvelope, FaLock, FaUser, FaUserPlus } from "react-icons/fa";
-import { FiEye } from "react-icons/fi";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
-export default function Register({ formData, handleSubmit, handleInputChange, errors, setisLogin }) {
+export default function Register({ formData, handleSubmit, handleInputChange, errors, setisLogin, status }) {
   const [showPassword, setShowPassword] = useState(false);
   const passwordStrength = useMemo(() => getPasswordStrength(formData.password), [formData.password]);
   
@@ -30,7 +30,7 @@ export default function Register({ formData, handleSubmit, handleInputChange, er
               Crear cuenta
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+            <form onSubmit={(e) => handleSubmit(e, 'register')} className="space-y-4" noValidate>
               <InputField
                 label="Nombre de Usuario"
                 name="name"
@@ -92,6 +92,7 @@ export default function Register({ formData, handleSubmit, handleInputChange, er
                 </span>
               </label>
 
+              <span className="theme-error">{status}</span>
               <PrimaryButton
                 type="submit"
                 background="--color-secondary"
