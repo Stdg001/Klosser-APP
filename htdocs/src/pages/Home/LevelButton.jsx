@@ -127,27 +127,27 @@ export default function LevelButton({ missionJSON, index, state, onComplete }) {
         )
       }
 
-      {/* //       <div className="pt-6 flex gap-3">
-      //         {!isCompleted && (
-      //           <button
-      //             className="px-4 py-2 rounded-xl bg-amber-600 text-white font-semibold shadow hover:shadow-md active:scale-[.99] transition"
-      //             onClick={() => {
-      //               setOpen(false);
-      //               playCompleteChain();
-      //             }}
-      //           >
-      //             Completar misión
-      //           </button>
-      //         )}
-      //         <button
-      //           className="px-4 py-2 rounded-xl border theme-border theme-text hover:bg-white/5 transition"
-      //           onClick={() => setOpen(false)}
-      //         >
-      //           Cerrar
-      //         </button>
-      //       </div>
-      //     </div>
-      // )} */}
+      <div className="pt-6 flex gap-3">
+               {!isCompleted && (
+                 <button
+                   className="px-4 py-2 rounded-xl bg-amber-600 text-white font-semibold shadow hover:shadow-md active:scale-[.99] transition"
+                   onClick={() => {
+                     setOpen(false);
+                     playCompleteChain();
+                   }}
+                 >
+                   Completar misión
+                 </button>
+               )}
+               <button
+                 className="px-4 py-2 rounded-xl border theme-border theme-text hover:bg-white/5 transition"
+                 onClick={() => setOpen(false)}
+               >
+               Cerrar
+               </button>
+             </div>
+           </div>
+       )}
 
       {/* Estilos auxiliares del botón */}
       <style>{`
@@ -196,3 +196,4 @@ export default function LevelButton({ missionJSON, index, state, onComplete }) {
     </div>
   );
 }
+
