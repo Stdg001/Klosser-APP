@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Lesson from "../../components/Lesson";
+import Lesson from "../../components/Lesson/";
 import { FaLock, FaTimes } from "react-icons/fa";
 
 export default function LevelButton({ missionJSON, index, state, onComplete }) {
@@ -128,72 +128,68 @@ export default function LevelButton({ missionJSON, index, state, onComplete }) {
       }
 
       <div className="pt-6 flex gap-3">
-               {!isCompleted && (
-                 <button
-                   className="px-4 py-2 rounded-xl bg-amber-600 text-white font-semibold shadow hover:shadow-md active:scale-[.99] transition"
-                   onClick={() => {
-                     setOpen(false);
-                     playCompleteChain();
-                   }}
-                 >
-                   Completar misión
-                 </button>
-               )}
-               <button
-                 className="px-4 py-2 rounded-xl border theme-border theme-text hover:bg-white/5 transition"
-                 onClick={() => setOpen(false)}
-               >
-               Cerrar
-               </button>
-             </div>
-           </div>
-       )}
-
-      {/* Estilos auxiliares del botón */}
-      <style>{`
-        /* Pequeño "bump" al completar */
-        .btn-bump {
-          animation: btn-bump-key 0.35s ease;
-        }
-        @keyframes btn-bump-key {
-          0% { transform: translateY(-2px) scale(1); }
-          40% { transform: translateY(-4px) scale(1.08); }
-          100% { transform: translateY(0) scale(1); }
-        }
-
-        /* Pulso de desbloqueo */
-        .unlock-pulse {
-          box-shadow: 0 0 0 0 rgba(245, 158, 11, .45);
-          animation: unlock-pulse-key .9s ease-out forwards;
-          border: 2px solid rgba(245, 158, 11, .55);
-        }
-        @keyframes unlock-pulse-key {
-          0% { transform: scale(1); opacity: 1; }
-          70% { transform: scale(1.25); opacity: .45; }
-          100% { transform: scale(1.4); opacity: 0; }
-        }
-
-        /* Destello de completado */
-        .complete-shine {
-          background: radial-gradient(ellipse at center, rgba(255,255,200,.55), rgba(255,255,200,0) 60%);
-          animation: shine-fade 1.1s ease forwards;
-          mix-blend-mode: screen;
-        }
-        @keyframes shine-fade {
-          0% { opacity: .95; transform: scale(.8) rotate(0deg); }
-          100% { opacity: 0; transform: scale(1.4) rotate(15deg); }
-        }
-        .sparkles path, .sparkles circle {
-          fill: rgba(255, 255, 120, .9);
-          animation: spark-rotate 1.1s ease forwards;
-          transform-origin: 50% 50%;
-        }
-        @keyframes spark-rotate {
-          0% { transform: rotate(0deg) scale(0.8); opacity: .9; }
-          100% { transform: rotate(25deg) scale(1.05); opacity: 0; }
-        }
-      `}</style>
+        {!isCompleted && (
+          <button
+            className="px-4 py-2 rounded-xl bg-amber-600 text-white font-semibold shadow hover:shadow-md active:scale-[.99] transition"
+            onClick={() => {
+              setOpen(false);
+              playCompleteChain();
+            }}
+          >
+            Completar misión
+          </button>
+        )}
+        <button
+          className="px-4 py-2 rounded-xl border theme-border theme-text hover:bg-white/5 transition"
+          onClick={() => setOpen(false)}
+        >
+          Cerrar
+        </button>
+      </div>
     </div>
-  );
-}
+  )}
 
+      // {/* Estilos auxiliares del botón */}
+      // <style>{`
+      //   /* Pequeño "bump" al completar */
+      //   .btn-bump {
+      //     animation: btn-bump-key 0.35s ease;
+      //   }
+      //   @keyframes btn-bump-key {
+      //     0% { transform: translateY(-2px) scale(1); }
+      //     40% { transform: translateY(-4px) scale(1.08); }
+      //     100% { transform: translateY(0) scale(1); }
+      //   }
+
+      //   /* Pulso de desbloqueo */
+      //   .unlock-pulse {
+      //     box-shadow: 0 0 0 0 rgba(245, 158, 11, .45);
+      //     animation: unlock-pulse-key .9s ease-out forwards;
+      //     border: 2px solid rgba(245, 158, 11, .55);
+      //   }
+      //   @keyframes unlock-pulse-key {
+      //     0% { transform: scale(1); opacity: 1; }
+      //     70% { transform: scale(1.25); opacity: .45; }
+      //     100% { transform: scale(1.4); opacity: 0; }
+      //   }
+
+      //   /* Destello de completado */
+      //   .complete-shine {
+      //     background: radial-gradient(ellipse at center, rgba(255,255,200,.55), rgba(255,255,200,0) 60%);
+      //     animation: shine-fade 1.1s ease forwards;
+      //     mix-blend-mode: screen;
+      //   }
+      //   @keyframes shine-fade {
+      //     0% { opacity: .95; transform: scale(.8) rotate(0deg); }
+      //     100% { opacity: 0; transform: scale(1.4) rotate(15deg); }
+      //   }
+      //   .sparkles path, .sparkles circle {
+      //     fill: rgba(255, 255, 120, .9);
+      //     animation: spark-rotate 1.1s ease forwards;
+      //     transform-origin: 50% 50%;
+      //   }
+      //   @keyframes spark-rotate {
+      //     0% { transform: rotate(0deg) scale(0.8); opacity: .9; }
+      //     100% { transform: rotate(25deg) scale(1.05); opacity: 0; }
+      //   }
+      // `}</style>

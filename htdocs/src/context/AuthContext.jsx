@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
                 setUserData(response);
             } catch (e) {
                 setUserData(initialUserData);
-                navigate('/auth');
+                // navigate('/auth');
             } finally {
                 setIsLoading(false);
             }
