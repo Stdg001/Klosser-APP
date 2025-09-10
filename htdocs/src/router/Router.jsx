@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import MainLayout from '../pages/layout/MainLayout';
 import PhoneLayout from '../pages/layout/PhoneLayout';
 import Home from '../pages/Home';
-import Lesson from '../components/Lesson/old';
+import Lesson from '../pages/Lesson/';
 import Auth from '../pages/Auth';
 
 const PrivateRoute = ( {children} ) => {
